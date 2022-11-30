@@ -1,0 +1,6 @@
+motionwebcamserverplugin (VERSION) stable; urgency=medium
+
+  * See https://github.com/Duet3D/MotionWebcamServerPlugin for a full list of changes
+
+ -- Duet3D Packaging Authority <pkg@duet3d.com>  Wed, 30 Nov 2022 16:47:31 +0100
+

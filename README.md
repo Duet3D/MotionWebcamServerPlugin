@@ -16,7 +16,8 @@ To configure this service in DWC, go to the `Settings` -> `General` page and mak
 
 ## Build instructions
 
-Create a ZIP file of every file but `README.md` in this directory and make sure `plugin.json` is at the root level. Once created, the ZIP can be installed as a third-party plugin.
+Create a ZIP file of every file in the `src` directory and make sure `plugin.json` is at the root level. Once created, the ZIP can be installed as a third-party plugin.
+If a Debian package is supposed to be generated, check out to the `pkg/build.sh` script.
 
 ## Logging
 
