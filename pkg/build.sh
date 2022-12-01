@@ -20,7 +20,7 @@ sed -i "s/VERSION/$version/g" /tmp/motionwebcamserverplugin/motionwebcamserverpl
 
 echo "- Packaging files..."
 cd /tmp/motionwebcamserverplugin
-dpkg-deb --build motionwebcamserverplugin_$version
+dpkg-deb --build -Zxz motionwebcamserverplugin_$version
 dpkg-sig -k $signkey -s builder motionwebcamserverplugin_$version.deb
 mv /tmp/motionwebcamserverplugin/motionwebcamserverplugin_$version.deb $pkgdir/motionwebcamserverplugin_$version.deb
 #rm -rf /tmp/motionwebcamserverplugin/motionwebcamserverplugin_$version
