@@ -8,6 +8,8 @@ chown -R dsf:dsf /opt/dsf/plugins/MotionWebcamServer
 chmod 550 /opt/dsf/plugins/MotionWebcamServer/dsf/arm/motion
 chmod 550 /opt/dsf/plugins/MotionWebcamServer/dsf/arm64/motion
 
+chown dsf:dsf /opt/dsf/sd/sys/motion.conf
+
 # Reload the plugin manifest
 if [ -f /opt/dsf/plugins/MotionWebcamServer/.start ]; then
         rm /opt/dsf/plugins/MotionWebcamServer/.start
@@ -17,6 +19,11 @@ if [ -f /opt/dsf/plugins/MotionWebcamServer/.start ]; then
         else
                 echo "MotionWebcamServer" >> /opt/dsf/conf/plugins.txt
         fi
+fi
+
+# Enable RPi webcam if applicable
+if [ -f /usr/bin/raspi-config ]; then
+	raspi-config nonint do_camera 0
 fi
 
 # Don't block the configuration of other packages if DPS failed to start
