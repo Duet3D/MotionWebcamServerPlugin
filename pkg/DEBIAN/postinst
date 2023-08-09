@@ -11,19 +11,13 @@ chmod 550 /opt/dsf/plugins/MotionWebcamServer/dsf/arm64/motion
 chown dsf:dsf /opt/dsf/sd/sys/motion.conf
 
 # Reload the plugin manifest
-if [ -f /opt/dsf/plugins/MotionWebcamServer/.start ]; then
-        rm /opt/dsf/plugins/MotionWebcamServer/.start
-        if (systemctl is-active -q duetcontrolserver && systemctl is-active -q duetpluginservice && systemctl is-active -q duetpluginservice-root); then
-                /opt/dsf/bin/PluginManager -q reload MotionWebcamServer
-                /opt/dsf/bin/PluginManager -q start MotionWebcamServer
-        else
-                echo "MotionWebcamServer" >> /opt/dsf/conf/plugins.txt
-        fi
-fi
-
-# Apply AppArmor profile
-if [ -f /usr/sbin/apparmor_parser ]; then
-	apparmor_parser -r /etc/apparmor.d/dsf.MotionWebcamServer
+if (systemctl is-active -q duetcontrolserver && systemctl is-active -q duetpluginservice-root); then
+	# Don't wait for the plugin manager to return because that can lead to a deadlock if the install request came from the root plugin service
+	if [[ -n `cat /opt/dsf/conf/plugins.txt | grep "^MotionWebcamServer$"` ]]; then
+		(/opt/dsf/bin/PluginManager -q reload F3Plugin && /opt/dsf/bin/PluginManager -q start F3Plugin) &
+	else
+		/opt/dsf/bin/PluginManager -q reload F3Plugin &
+	fi
 fi
 
 # Enable RPi webcam if applicable

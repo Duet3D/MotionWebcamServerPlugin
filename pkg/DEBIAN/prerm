@@ -1,23 +1,9 @@
 #!/bin/bash
 
-# Stop the plugin first
-if (systemctl is-active -q duetcontrolserver && /opt/dsf/bin/PluginManager -q is-started MotionWebcamServer); then
-	/opt/dsf/bin/PluginManager -q stop MotionWebcamServer
-	if [[ "$1" == "upgrade" ]]; then
-		# Restart it again when the upgrade is complete
-		touch /opt/dsf/plugins/MotionWebcamServer/.start
-	fi
-elif ([[ -e /opt/dsf/conf/plugins.txt ]] && grep -q -e "^MotionWebcamServer$" /opt/dsf/conf/plugins.txt ); then
-	sed -e '/^MotionWebcamServer$/d' -i /opt/dsf/conf/plugins.txt
-	if [[ "$1" == "upgrade" ]]; then
-		# Restart it again when the upgrade is complete
-		touch /opt/dsf/plugins/MotionWebcamServer/.start
-	fi
-fi
-
-# Remove AppArmor profile
-if [ -f /usr/sbin/apparmor_parser ]; then
-	apparmor_parser -R /etc/apparmor.d/dsf.MotionWebcamServer
+# Kill the plugin first
+killall F3Plugin || true
+if ([[ -e /opt/dsf/conf/plugins.txt ]] && [[ "$1" != "upgrade" ]] && grep -q -e "^MotionWebcamServer$" /opt/dsf/conf/plugins.txt ); then
+        sed -e '/^MotionWebcamServer$/d' -i /opt/dsf/conf/plugins.txt
 fi
 
 # Make manifest writable again
