@@ -36,6 +36,6 @@
   /dev/tty rw,
   /run/udev/data/* r,
   /usr/bin/libcamerify rm,
-  /usr/share/libcamera/ipa/raspberrypi/* r,
-
+  /usr/share/libcamera/** r,
+  /usr/libexec/libcamera/* rm,
 }
