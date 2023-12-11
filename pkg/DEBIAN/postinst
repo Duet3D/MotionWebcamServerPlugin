@@ -6,7 +6,9 @@ chmod 440 /opt/dsf/plugins/MotionWebcamServer.json
 
 chown -R dsf:dsf /opt/dsf/plugins/MotionWebcamServer
 chmod 550 /opt/dsf/plugins/MotionWebcamServer/dsf/arm/motion
+chmod 550 /opt/dsf/plugins/MotionWebcamServer/dsf/arm/startMotion.sh
 chmod 550 /opt/dsf/plugins/MotionWebcamServer/dsf/arm64/motion
+chmod 550 /opt/dsf/plugins/MotionWebcamServer/dsf/arm64/startMotion.sh
 
 chown dsf:dsf /opt/dsf/sd/sys/motion.conf
 

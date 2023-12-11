@@ -4,7 +4,7 @@ set -e
 pwd=$(pwd)
 
 version=$(jq -r ".version" ../src/plugin.json)
-signkey=5E90FAE850ECE85E1B3096801101D2C8B78BAD31
+signkey=C406404B2459FE0B1C6CC19D3738126EDA91C86B
 pkgdir=$(pwd)/../..
 
 echo "- Arranging files..."
