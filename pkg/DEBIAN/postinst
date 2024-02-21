@@ -6,7 +6,11 @@ chmod 440 /opt/dsf/plugins/MotionWebcamServer.json
 
 chown -R dsf:dsf /opt/dsf/plugins/MotionWebcamServer
 chmod 550 /opt/dsf/plugins/MotionWebcamServer/dsf/arm/motion
+chmod 550 /opt/dsf/plugins/MotionWebcamServer/dsf/arm/startMotion.sh
 chmod 550 /opt/dsf/plugins/MotionWebcamServer/dsf/arm64/motion
+chmod 550 /opt/dsf/plugins/MotionWebcamServer/dsf/arm64/startMotion.sh
+
+chown dsf:dsf /opt/dsf/sd/sys/motion.conf
 
 # Reload the plugin manifest
 if [ -f /opt/dsf/plugins/MotionWebcamServer/.start ]; then
@@ -17,6 +21,16 @@ if [ -f /opt/dsf/plugins/MotionWebcamServer/.start ]; then
         else
                 echo "MotionWebcamServer" >> /opt/dsf/conf/plugins.txt
         fi
+fi
+
+# Apply AppArmor profile
+if [ -f /usr/sbin/apparmor_parser ]; then
+	apparmor_parser -r /etc/apparmor.d/dsf.MotionWebcamServer
+fi
+
+# Enable RPi webcam if applicable
+if [ -f /usr/bin/raspi-config ]; then
+	raspi-config nonint do_camera 0
 fi
 
 # Don't block the configuration of other packages if DPS failed to start

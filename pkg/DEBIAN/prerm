@@ -15,6 +15,10 @@ elif ([[ -e /opt/dsf/conf/plugins.txt ]] && grep -q -e "^MotionWebcamServer$" /o
 	fi
 fi
 
+# Remove AppArmor profile
+if [ -f /usr/sbin/apparmor_parser ]; then
+	apparmor_parser -R /etc/apparmor.d/dsf.MotionWebcamServer
+fi
 
 # Make manifest writable again
 chmod 660 /opt/dsf/plugins/MotionWebcamServer.json
