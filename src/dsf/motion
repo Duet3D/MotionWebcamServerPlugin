@@ -1,0 +1,14 @@
+#!/bin/bash
+
+onSigTerm() {
+  kill -TERM "$pid" 2>/dev/null
+}
+
+trap onSigTerm SIGTERM
+
+# Start Motion webcam server
+motion -c /opt/dsf/sd/sys/motion.conf &
+
+pid=$!
+wait "$pid"
+
