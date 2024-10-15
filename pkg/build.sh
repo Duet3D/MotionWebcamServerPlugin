@@ -15,10 +15,6 @@ cp -r ../src/dsf /tmp/motionwebcamserverplugin/motionwebcamserverplugin_$version
 cp -r ../src/sd /tmp/motionwebcamserverplugin/motionwebcamserverplugin_$version/opt/dsf/sd
 cp ../src/plugin.json /tmp/motionwebcamserverplugin/motionwebcamserverplugin_$version/opt/dsf/plugins/MotionWebcamServer.json
 
-# for OEMs
-rm /tmp/motionwebcamserverplugin/motionwebcamserverplugin_$version/DEBIAN/conffiles
-rm /tmp/motionwebcamserverplugin/motionwebcamserverplugin_$version/opt/dsf/sd/sys/motion.conf
-
 echo "- Preparing package index"
 sed -i "s/VERSION/$version/g" /tmp/motionwebcamserverplugin/motionwebcamserverplugin_$version/DEBIAN/control
 sed -i "s/VERSION/$version/g" /tmp/motionwebcamserverplugin/motionwebcamserverplugin_$version/DEBIAN/changelog
