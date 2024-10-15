@@ -12,12 +12,7 @@ mkdir -p /tmp/motionwebcamserverplugin/motionwebcamserverplugin_$version/opt/dsf
 cp -r $pwd/DEBIAN /tmp/motionwebcamserverplugin/motionwebcamserverplugin_$version/DEBIAN
 cp -r $pwd/etc /tmp/motionwebcamserverplugin/motionwebcamserverplugin_$version/etc
 cp -r ../src/dsf /tmp/motionwebcamserverplugin/motionwebcamserverplugin_$version/opt/dsf/plugins/MotionWebcamServer/dsf
-cp -r ../src/sd /tmp/motionwebcamserverplugin/motionwebcamserverplugin_$version/opt/dsf/sd
 cp ../src/plugin.json /tmp/motionwebcamserverplugin/motionwebcamserverplugin_$version/opt/dsf/plugins/MotionWebcamServer.json
-
-# for OEMs
-rm /tmp/motionwebcamserverplugin/motionwebcamserverplugin_$version/DEBIAN/conffiles
-rm /tmp/motionwebcamserverplugin/motionwebcamserverplugin_$version/opt/dsf/sd/sys/motion.conf
 
 echo "- Preparing package index"
 sed -i "s/VERSION/$version/g" /tmp/motionwebcamserverplugin/motionwebcamserverplugin_$version/DEBIAN/control
