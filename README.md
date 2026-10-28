@@ -8,10 +8,11 @@ Note that the default configuration uses the default `/dev/video0` device node, 
 
 ## Setup in DWC
 
-To configure this service in DWC, go to the `Settings` -> `General` page and make the following changes:
+To configure this service in DWC, go to the `Settings` -> `Webcam` page and make the following changes:
 
-- Set `Webcam URL` to `http://[HOSTNAME]:8081/0/stream`
-- Set `Webcam update interval (in ms)` to `0`
+- Enable `Show webcam feed`
+- Set `Image URL` to `http://[HOSTNAME]:8081/0/stream`
+- Set `Update interval` to `0`
 - Go to the `Job` -> `Webcam` page to see your live stream
 
 ## Build instructions
